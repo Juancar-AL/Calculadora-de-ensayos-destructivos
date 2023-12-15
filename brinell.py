@@ -116,23 +116,25 @@ def valores(brinell_instance, force = None, diameter = None, indentation_diamete
 
 #Check what functions needs to be used in order to complete the test
 def ensayo(brinell_instance):
-    while brinell_instance.result == None or brinell_instance.force == None or brinell_instance.diameter == None or brinell_instance.indentation_diameter == None or brinell_instance.hardness_constant == None or brinell_instance.fiability == None:
-        if brinell_instance.result == None and brinell_instance.force != None and brinell_instance.diameter != None and brinell_instance.indentation_diameter != None: 
-            result(brinell_instance)
-        elif brinell_instance.result != None and brinell_instance.force != None and brinell_instance.diameter == None and brinell_instance.indentation_diameter != None:
-            brinell_diameter(brinell_instance)
-        elif brinell_instance.result != None and brinell_instance.force != None and brinell_instance.diameter != None and brinell_instance.indentation_diameter == None:
-            brinell_indentation_d(brinell_instance)
-        elif brinell_instance.force == None and brinell_instance.hardness_constant != None:
-            brinell_force_1(brinell_instance)
-        elif brinell_instance.force == None and brinell_instance.hardness_constant == None:
-            brinell_force_2(brinell_instance)
-        # elif brinell_instance.fiability == None and brinell_instance.diameter != None and brinell_instance.hardness_constant != None and brinell_instance.force != None:
-        #     f_brinell_k(brinell_instance)
-        elif brinell_instance.fiability == None and brinell_instance.diameter != None and brinell_instance.indentation_diameter != None:
-            f_brinell_d(brinell_instance)
-        elif brinell_instance.hardness_constant == None and brinell_instance.diameter != None and brinell_instance.force != None:
-            hardness_constant(brinell_instance)
-
-    return brinell_instance
+    if brinell_instance.result == None and brinell_instance.force == None and brinell_instance.diameter == None and brinell_instance.indentation_diameter == None and brinell_instance.hardness_constant == None and brinell_instance.fiability == None:
+        pass
+    else:
+        while brinell_instance.result == None or brinell_instance.force == None or brinell_instance.diameter == None or brinell_instance.indentation_diameter == None or brinell_instance.hardness_constant == None or brinell_instance.fiability == None:
+            if brinell_instance.result == None and brinell_instance.force != None and brinell_instance.diameter != None and brinell_instance.indentation_diameter != None: 
+                result(brinell_instance)
+            elif brinell_instance.result != None and brinell_instance.force != None and brinell_instance.diameter == None and brinell_instance.indentation_diameter != None:
+                brinell_diameter(brinell_instance)
+            elif brinell_instance.result != None and brinell_instance.force != None and brinell_instance.diameter != None and brinell_instance.indentation_diameter == None:
+                brinell_indentation_d(brinell_instance)
+            elif brinell_instance.force == None and brinell_instance.hardness_constant != None:
+                brinell_force_1(brinell_instance)
+            elif brinell_instance.force == None and brinell_instance.hardness_constant == None:
+                brinell_force_2(brinell_instance)
+            # elif brinell_instance.fiability == None and brinell_instance.diameter != None and brinell_instance.hardness_constant != None and brinell_instance.force != None:
+            #     f_brinell_k(brinell_instance)
+            elif brinell_instance.fiability == None and brinell_instance.diameter != None and brinell_instance.indentation_diameter != None:
+                f_brinell_d(brinell_instance)
+            elif brinell_instance.hardness_constant == None and brinell_instance.diameter != None and brinell_instance.force != None:
+                hardness_constant(brinell_instance)
+        return brinell_instance
 

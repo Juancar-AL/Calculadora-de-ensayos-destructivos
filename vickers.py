@@ -53,16 +53,19 @@ def vickers_diameter(vickers_instance):
 
 def valores(vickers_instance, force = None, diameter1 = None, diameter2 = None, result = None):
     vickers_instance.force = force
-    vickers_instance.diameter = (diameter1+diameter2)/2
+    vickers_instance.diameter = diameter1 if diameter2 == None else (diameter1+diameter2)/2
     vickers_instance.result = result
 
 def ensayo(vickers_instance):
-    while vickers_instance.force == None or vickers_instance.diameter == None or vickers_instance.result == None:
-        if vickers_instance.result == None:
-            result(vickers_instance)
-        if vickers_instance.force == None:
-            vickers_force(vickers_instance)
-        if vickers_instance.diameter == None:
-            vickers_diameter(vickers_instance)
-    return vickers_instance
+    if vickers_instance.force == None and vickers_instance.diameter == None and vickers_instance.result == None:
+        pass
+    else:
+        while vickers_instance.force == None or vickers_instance.diameter == None or vickers_instance.result == None:
+            if vickers_instance.result == None:
+                result(vickers_instance)
+            if vickers_instance.force == None:
+                vickers_force(vickers_instance)
+            if vickers_instance.diameter == None:
+                vickers_diameter(vickers_instance)
+        return vickers_instance
     

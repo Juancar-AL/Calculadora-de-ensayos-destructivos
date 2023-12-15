@@ -9,11 +9,11 @@ def cambiar_apariencia():
 
 def calcular_ensayo():
     # Verificar si los CTkEntry están vacíos y asignar None si es el caso
-    result_value = float(entry1.get()) if entry1.get() else None
-    force_value = float(entry2.get()) if entry2.get() else None
-    diameter_value = float(entry3.get()) if entry3.get() else None
-    indentation_diameter_value = float(entry4.get()) if entry4.get() else None
-    hardness_constant_value = float(entry5.get()) if entry5.get() else None
+    result_value = float(entry1.get().replace(",", ".")) if entry1.get() else None
+    force_value = float(entry2.get().replace(",", ".")) if entry2.get() else None
+    diameter_value = float(entry3.get().replace(",", ".")) if entry3.get() else None
+    indentation_diameter_value = float(entry4.get().replace(",", ".")) if entry4.get() else None
+    hardness_constant_value = float(entry5.get().replace(",", ".")) if entry5.get() else None
     
     # Pasar los valores a la función brinell.valores
     brinell.valores(brinell.brinell_instance, force=force_value, result=result_value,

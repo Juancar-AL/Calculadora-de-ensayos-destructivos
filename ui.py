@@ -2,10 +2,8 @@ from typing import Optional, Tuple, Union
 import customtkinter
 import tkinter
 import brinell, vickers
-from PIL import Image
 
 
-image = customtkinter.CTkImage(light_image=Image.open("2960752-200.png"), size=(25, 25))
 brinell_instance = brinell.Brinell()
 vickers_instance = vickers.Vickers()
 
@@ -35,7 +33,7 @@ class BrinellApp(customtkinter.CTkToplevel):
         self.result3 = customtkinter.CTkLabel(self, text = "Diametro huella", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100)
         self.result4 = customtkinter.CTkLabel(self, text="Fuerza utilizada", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100)
         self.result5 = customtkinter.CTkLabel(self, text="Fiabilidad", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100)
-        self.tema = customtkinter.CTkButton(self, image=image, text="", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
+        self.tema = customtkinter.CTkButton(self, text="Tema", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
         self.button.grid(row=3, column=2, pady=10, padx=20)
         self.datos.grid(row=1, column=0, pady=10, padx=20)
         self.res.grid(row=1, column=3, pady=10, padx=20)
@@ -45,11 +43,7 @@ class BrinellApp(customtkinter.CTkToplevel):
         self.result4.grid(row=5, column=3, pady=10, padx=20)
         self.result5.grid(row=6, column=3, pady=10, padx=20)
         self.tema.grid(row=6, column=2, pady=10, padx=20)
-
-        #imagen
-        
-                                  
-                                  
+                        
 
     def calcular_ensayo(self):
         # Verificar si los CTkEntry están vacíos y asignar None si es el caso
@@ -110,7 +104,7 @@ class VickersApp(customtkinter.CTkToplevel):
         self.result1.grid(row=2, column=3, pady=10, padx=20)
         self.result2.grid(row=3, column=3, pady=10, padx=20)
         self.result4.grid(row=4, column=3, pady=10, padx=20)
-        self.tema = customtkinter.CTkButton(self, image=image, text="", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
+        self.tema = customtkinter.CTkButton(self, text="Tema", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
         self.tema.grid(row=5, column=3, pady=10, padx=20)
     def calcular_ensayo(self):
         result_value = float((self.entry1.get()).replace(",", ".")) if self.entry1.get() else None
@@ -145,7 +139,7 @@ class MainApp(customtkinter.CTk):
         self.button2.grid(column=2, row = 3, padx = 20, pady = 40)
         self.label.grid(column = 1, row = 0, padx = 20, pady = 20)
         self.label2.grid(column = 1, row = 5, padx = 20, pady = 60)
-        self.tema = customtkinter.CTkButton(self, image=image, text="", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
+        self.tema = customtkinter.CTkButton(self, text="Tema", command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
         self.tema.grid(row=5, column=2, pady=10, padx=20)
 
         self.toplevel_window = None

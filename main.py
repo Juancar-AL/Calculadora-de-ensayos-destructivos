@@ -131,7 +131,7 @@ class VickersApp(customtkinter.CTkToplevel):
 class MainApp(customtkinter.CTk):
     def __init__(self) -> None:
         super().__init__()
-        self.title("Calculadora de ensayos destructivos - Vickers")
+        self.title("Calculadora de ensayos destructivos")
         self.geometry("700x275")
         self.grid_columnconfigure((0, 2), weight=1)
         self.iconbitmap("others/icon.ico")
@@ -146,7 +146,6 @@ class MainApp(customtkinter.CTk):
         self.label2.grid(column = 1, row = 5, padx = 20, pady = 60)
         self.tema = customtkinter.CTkButton(self, image=image, text="Tema",  command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
         self.tema.grid(row=5, column=2, pady=10, padx=20)
-
         self.toplevel_window = None
 
     def c_brinell(self):

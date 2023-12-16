@@ -1,7 +1,6 @@
 from typing import Optional, Tuple, Union
 import customtkinter
-import tkinter
-import brinell, vickers
+import calc.brinell as brinell, calc.vickers as vickers
 from PIL import Image
 
 

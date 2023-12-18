@@ -9,6 +9,14 @@ vickers_instance = vickers.Vickers()
 
 image = customtkinter.CTkImage(light_image=Image.open("others/theme.png"))
 
+def cambiar_apariencia():
+    global estado
+    customtkinter.set_appearance_mode("light" if estado else "dark")
+    estado = not estado
+
+estado = False
+
+
 class BrinellApp(customtkinter.CTkToplevel):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__()
@@ -71,15 +79,6 @@ class BrinellApp(customtkinter.CTkToplevel):
         self.result4.configure(text=f"{brinell_instance.force} kp ")
         self.result5.configure(text='El ensayo es fiable' if brinell_instance.fiability else 'El ensayo no es fiable')
 
-def cambiar_apariencia():
-    global estado
-    estado = not estado
-    customtkinter.set_appearance_mode("light" if estado else "dark")
-
-estado = False
-# Crea la instancia de la aplicación Brinell después de haber definido la clase
-
-
 class VickersApp(customtkinter.CTkToplevel):
     def __init__(self, *args, **kwargs):
         super().__init__()
@@ -131,22 +130,30 @@ class VickersApp(customtkinter.CTkToplevel):
 class MainApp(customtkinter.CTk):
     def __init__(self) -> None:
         super().__init__()
+
         self.title("Calculadora de ensayos destructivos")
-        self.geometry("700x275")
-        self.grid_columnconfigure((0, 2), weight=1)
+        self.geometry("700x300")
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure((0,2), weight=2)
+        self.grid_rowconfigure(1, weight=2)
+        self.grid_rowconfigure((2,3), weight=3)
         self.iconbitmap("others/icon.ico")
 
-        self.button1 = customtkinter.CTkButton(self, text="Ensayo Brinell", command=self.c_brinell,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=350)
-        self.button2 = customtkinter.CTkButton(self, text="Ensayo Vickers", command=self.c_vickers,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=350)
+
+        self.frame = customtkinter.CTkFrame(self)
+        self.button1 = customtkinter.CTkButton(self, text="Ensayo Brinell", command=self.c_brinell,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2",width=150,)
+        self.button2 = customtkinter.CTkButton(self, text="Ensayo Vickers", command=self.c_vickers,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2",width=150,)
         self.label = customtkinter.CTkLabel(self, text = "Calculadora de ensayos destructivos", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100)
-        self.label2 = customtkinter.CTkLabel(self, text = "Por Juan Carlos Alonso Luengo", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100, font=("", 10))
-        self.button1.grid(column=0, row = 3, padx = 20, pady = 40, sticky = "nsew")
-        self.button2.grid(column=2, row = 3, padx = 20, pady = 40)
-        self.label.grid(column = 1, row = 0, padx = 20, pady = 20)
-        self.label2.grid(column = 1, row = 5, padx = 20, pady = 60)
-        self.tema = customtkinter.CTkButton(self, image=image, text="Tema",  command=cambiar_apariencia ,corner_radius = 100, fg_color = ("#7CC0A2", "#45B584"), text_color = "#000000", hover_color="#88D4B2", width=5)
-        self.tema.grid(row=5, column=2, pady=10, padx=20)
+        self.label2 = customtkinter.CTkLabel(self, text = "Por Juan Carlos Alonso Luengo", width=150, fg_color = ("#D7D7D7", "#555555"),corner_radius = 100)
+        self.button1.grid(column=0, row = 1, padx = 20, pady = 20, sticky = "nsew")
+        self.button2.grid(column=2, row = 1, padx = 20, pady = 20, sticky = "nsew")
+        self.label.grid(column = 0, row = 0, padx = 20, pady = 20, sticky = "nsew", columnspan = 3)
+        self.label2.grid(column = 0, row = 2, padx = 20, pady = 20, sticky = "nsew", columnspan = 2)
+        self.tema = customtkinter.CTkButton(self, image=image, text="Apariencia",  command=cambiar_apariencia, fg_color = ("#353D3A", "#A4A7A6"), text_color = "#FFFFFF", hover_color=("#5A6863", "#787878"), width=150, corner_radius=100)
+        self.tema.grid(row=2, column=2, pady=20, padx=20, sticky = "nsew")
         self.toplevel_window = None
+        
+        
 
     def c_brinell(self):
         if self.toplevel_window is None or not self.toplevel_window.winfo_exists():
@@ -158,7 +165,5 @@ class MainApp(customtkinter.CTk):
             self.toplevel_window = VickersApp(self)
         else:
             self.toplevel_window.focus()
-
-
 app = MainApp()
 app.mainloop()

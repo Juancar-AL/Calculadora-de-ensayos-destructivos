@@ -167,3 +167,6 @@ class MainApp(customtkinter.CTk):
             self.toplevel_window.focus()
 app = MainApp()
 app.mainloop()
+
+#Por Juan Carlos Alonso
+print("Por Juan Carlos Alonso Luengo")

@@ -73,3 +73,4 @@ def ensayo(vickers_instance):
                 vickers_diameter(vickers_instance)
         return vickers_instance
     
+#Por Juan Carlos Alonso

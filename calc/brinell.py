@@ -131,6 +131,6 @@ def ensayo(brinell_instance):
         return brinell_instance           
     else:
         raise Exception("Se han de dar más de 2 datos del problema")
-        pass
         
 
+#Por Juan Carlos Alonso

@@ -73,3 +73,5 @@ traction_instance = Traction()
 
 def tens(traction_instance):
     traction_instance.tens = traction_instance.force / 
+
+#Por Juan Carlos Alonso

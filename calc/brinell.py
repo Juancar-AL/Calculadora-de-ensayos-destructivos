@@ -64,23 +64,23 @@ class Brinell():
 
 brinell_instance = Brinell()
 
-# Calculate the result of the test
+# Calcular la dureza del ensayo mediante la fórmula principal del ensayo brinell
 def result(brinell_instance):
     brinell_instance.result = round(brinell_instance.force/(((math.pi*brinell_instance.diameter)/2)*(brinell_instance.diameter-math.sqrt(brinell_instance.diameter**2-brinell_instance.indentation_diameter**2))), 3)
     return brinell_instance.result
 
-# Calculate the diameter of the identator
+# Calcular el diámetro del identador/penetrador utilizado
 def brinell_indentation_d(brinell_instance):
     surface = brinell_instance.force / brinell_instance.result
     brinell_instance.indentation_diameter = round(math.sqrt(brinell_instance.diameter**2-((brinell_instance.diameter-(2*surface)/(math.pi*brinell_instance.diameter))**2)), 3 )
     return brinell_instance.indentation_diameter
 
-# Calculate the force by using the constant
+# Calcular la fuerza utilizada en el ensayo Brinell
 def brinell_force_1(brinell_instance):
     brinell_instance.force = round(brinell_instance.hardness_constant * brinell_instance.diameter**2, 2)
     return brinell_instance.force
 
-# Calculate the diameter by using the constant
+# Calcular el diámetro utilzando la fórmula del que nos garantiza la fiabilidad del ensayo
 def brinell_diameter(brinell_instance):
     brinell_instance.diameter = round(math.sqrt(brinell_instance.force/brinell_instance.hardness_constant), 3)
     return brinell_instance.diameter

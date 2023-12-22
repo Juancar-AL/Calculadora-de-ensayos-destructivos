@@ -33,44 +33,47 @@ class Vickers():
 
     def __str__(self) -> str:
         return str((self.result, self.force, self.diameter))
-
-#Variables necesarias para el correcto funcionamiento del problema    
-vickers_instance = Vickers()
-k = 1.8544
-
-#Calcular el resultado del ensayo utilizando la fórmula HV = F/D^2
-def result(vickers_instance):
-    vickers_instance.result = round(k*(vickers_instance.force/vickers_instance.diameter**2),3 )
-    return vickers_instance.result
+    
+    #Calcular el resultado del ensayo utilizando la fórmula HV = F/D^2
+def result(self):
+    self.result = round(k*(self.force/self.diameter**2),3 )
+    return self.result
 
 #Calcular la fuerza utilizada en el ensayo mediante la fórmula principal HV = F/D^2
-def vickers_force(vickers_instance):
-    vickers_instance.force = round((vickers_instance.result/k)*vickers_instance.diameter**2, 3)
-    return vickers_instance.force
+def vickers_force(self):
+    self.force = round((self.result/k)*self.diameter**2, 3)
+    return self.force
 
 #Calcular el diámetro del indentador mediante la fórmula principal HV = F/D^2
-def vickers_diameter(vickers_instance):
-    vickers_instance.diameter = round(math.sqrt(vickers_instance.result/(vickers_instance.force*k)), 3)
-    return vickers_instance.diameter
+def vickers_diameter(self):
+    self.diameter = round(math.sqrt(self.result/(self.force*k)), 3)
+    return self.diameter
 
 #Establecer los valores para las instancias de la clase, ninguno de ellos es obligarotio
-def valores(vickers_instance, force = None, diameter1 = None, diameter2 = None, result = None):
-    vickers_instance.force = force
-    vickers_instance.diameter = diameter1 if diameter2 == None else (diameter1+diameter2)/2 #Si se dan dos valores para el diámetro se calcula la media de estos
-    vickers_instance.result = result
+def valores(self, force = None, diameter1 = None, diameter2 = None, result = None):
+    self.force = force
+    self.diameter = diameter1 if diameter2 == None else (diameter1+diameter2)/2 #Si se dan dos valores para el diámetro se calcula la media de estos
+    self.result = result
 
 #Extraer todos los datos faltantes del ensayo
-def ensayo(vickers_instance):
-    if vickers_instance.force == None and vickers_instance.diameter == None and vickers_instance.result == None: #Comprobar que no todos los valores son None
+def ensayo(self):
+    if self.force == None and self.diameter == None and self.result == None: #Comprobar que no todos los valores son None
         pass
     else:
-        while vickers_instance.force == None or vickers_instance.diameter == None or vickers_instance.result == None: #Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
-            if vickers_instance.result == None:
-                result(vickers_instance)
-            if vickers_instance.force == None:
-                vickers_force(vickers_instance)
-            if vickers_instance.diameter == None:
-                vickers_diameter(vickers_instance)
-        return vickers_instance
+        while self.force == None or self.diameter == None or self.result == None: #Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
+            if self.result == None:
+                result(self)
+            if self.force == None:
+                vickers_force(self)
+            if self.diameter == None:
+                vickers_diameter(self)
+        return self
+
+#Variables necesarias para el correcto funcionamiento del problema    
+if __name__ == "__main__":
+    vickers_instance = Vickers()
+k = 1.8544
+
+
     
 #Por Juan Carlos Alonso

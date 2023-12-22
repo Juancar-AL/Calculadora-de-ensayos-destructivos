@@ -67,11 +67,12 @@ class Traction():
         self._alar = n_alar
 
     def __str__(self) -> str:
-        return str((self.tens, self._long1,self._long2,self._force, self._area, self._alar))
+        return str((self.tens_r, self._long1,self._long2,self._force, self._area, self._alar))
+    
+    def tens(self):
+        self.tens_r = self.force / self.
     
 traction_instance = Traction()
 
-def tens(traction_instance):
-    traction_instance.tens = traction_instance.force / 
 
 #Por Juan Carlos Alonso

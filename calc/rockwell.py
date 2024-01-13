@@ -4,6 +4,7 @@ class Rockwell():
         self._h2 = None
         self._h3 = None
         self._e = None
+        self._result = None
 
     @property
     def h2(self):
@@ -28,3 +29,17 @@ class Rockwell():
     @e.setter
     def e(self, n_e):
         self._e = n_e
+
+    @property
+    def result(self):
+        return self._result
+    
+    @result.setter
+    def result(self, n_result):
+        self._result = n_result
+
+    def result_b(self):
+        self.result = 130 - self.e
+    def result_c(self):
+        self.result = 100 - self.e
+    

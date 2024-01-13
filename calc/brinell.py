@@ -1,4 +1,5 @@
-import math
+import math, sys
+
 
 #Establece las instancias de una clase para así pdoer trabajar con todas ellas mientras están asignadas a un mismo ensayo
 class Brinell():
@@ -99,7 +100,7 @@ def hardness_constant(self):
         return self.hardness_constant
 
 #Establecer los valores para las instancias de la clase, ninguno de ellos es obligarotio
-def valores(self, force = None, diameter = None, indentation_diameter = None, result = None, hardness_constant = None):
+def brinell_valores(self, force = None, diameter = None, indentation_diameter = None, result = None, hardness_constant = None):
     self.force = force
     self.diameter = diameter
     self.indentation_diameter = indentation_diameter
@@ -108,7 +109,7 @@ def valores(self, force = None, diameter = None, indentation_diameter = None, re
 
 
 #Extraer todos los datos faltantes del ensayo
-def ensayo(self):
+def brinell_ensayo(self):
     if sum(1 for var in [self.result, self.force, self.diameter,self.indentation_diameter, self.hardness_constant, self.fiability]if var is not None) >= 2: # Comprobar si se han rellenado más de 2 variables, en caso de que si se ejecuta el código
         while self.result == None or self.force == None or self.diameter == None or self.indentation_diameter == None or self.hardness_constant == None or self.fiability == None: #Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
             if self.result == None and self.force != None and self.diameter != None and self.indentation_diameter != None: 
@@ -127,7 +128,7 @@ def ensayo(self):
                 hardness_constant(self)
         return self           
     else:
-        raise Exception("Se han de dar más de 2 datos del problema")
+        raise ValueError
 
 if __name__ == "__main__":
     brinell_instance = Brinell()

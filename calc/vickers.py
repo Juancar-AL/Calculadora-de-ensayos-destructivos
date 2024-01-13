@@ -35,7 +35,7 @@ class Vickers():
         return str((self.result, self.force, self.diameter))
     
     #Calcular el resultado del ensayo utilizando la fórmula HV = F/D^2
-def result(self):
+def vickers_result(self):
     self.result = round(k*(self.force/self.diameter**2),3 )
     return self.result
 
@@ -50,23 +50,23 @@ def vickers_diameter(self):
     return self.diameter
 
 #Establecer los valores para las instancias de la clase, ninguno de ellos es obligarotio
-def valores(self, force = None, diameter1 = None, diameter2 = None, result = None):
+def vickers_valores(self, force = None, diameter1 = None, diameter2 = None, result = None):
     self.force = force
     self.diameter = diameter1 if diameter2 == None else (diameter1+diameter2)/2 #Si se dan dos valores para el diámetro se calcula la media de estos
     self.result = result
 
 #Extraer todos los datos faltantes del ensayo
-def ensayo(self):
+def vickers_ensayo(self):
     if self.force == None and self.diameter == None and self.result == None: #Comprobar que no todos los valores son None
         pass
     else:
         while self.force == None or self.diameter == None or self.result == None: #Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
             if self.result == None:
-                result(self)
+                self.vickers_result(self)
             if self.force == None:
-                vickers_force(self)
+                self.vickers_force(self)
             if self.diameter == None:
-                vickers_diameter(self)
+                self.vickers_diameter(self)
         return self
 
 #Variables necesarias para el correcto funcionamiento del problema    

@@ -127,4 +127,4 @@ if __name__ == "__main__":
     #traction_instance.trac_ensayo(force=  True, proportional=True)
     print(traction_instance)
 
-#Por Juan Carlos Alonso
+#Por Juan Carlos Alonso Luengo

@@ -342,3 +342,5 @@ def cambiar_apariencia():
 app = MainApp()
 app.mostrar_principal()
 app.mainloop()
+
+#Por Juan Carlos Alonso Luengo

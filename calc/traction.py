@@ -69,68 +69,62 @@ class Traction():
     def __str__(self) -> str:
         return str((self.tens, self._long1,self._long2, self._elong, self._force, self._area, self.const))
     
-    def trac_tens(self):
-        self.tens = self.force / self.area
-        return self.tens
-    def trac_force(self):
-        self.force = self.tens * self.area
-        return self.force
-    def trac_area(self):
-        self.area = self.tens * self.tens
-        return self.area
-    def trac_elong(self):
-        self.elong = (self.long2-self.long1)/self.long1
-        return self.elong
-    def hooke_tens(self):
-        self.tens = self.const*self.elong
-        return self.tens
-    def hooke_const(self):
-        self.const = self.tens / self.elong
-        return self.const
-    def hooke_elong(self):
-        self.elong = self.tens/self.const
-        return self.elong
-    
-    def trac_ensayo(self, proportional):
-        while self.elong == None or self.tens == None:
-            if proportional == True:
-                print("Funciones con ley de Hooke")
-            else:
-                print("Otras funciones")
-    def trac_valores(self, tension = None, force = None, elong = None, area = None, long1 = None, long2 = None, const = None):
-        self.tens = tension
-        self.force = force
-        self.elong = elong
-        self.area = area
-        self.long1 = long1
-        self.long2 = long2
-        self.const = const
-    def trac_ensayo(self, proportional = False, tens = False, elong = False, const = False, area = False, force = False, *args, **kwargs ):
-        if self.tens ==None and self.force ==None  and self.elong ==None and self.area ==None and self.long1 ==None and self.long2 ==None and self.const == None:
-            pass
-        else:
-            if proportional:
-                if self.tens == None and self.elong != None and self.const != None and tens:
-                    self.hooke_tens()
-                if self.tens != None and self.elong == None and self.const != None and elong:
-                    self.hooke_elong()
-                if self.tens != None and self.elong != None and self.const == None and const:
-                    self.hooke_const()
-            else:
-                if self.tens == None and self.force != None and self.area != None and tens:
-                    self.trac_tens()
-                elif self.tens != None and self.force != None and self.area == None and area:
-                    self.trac_tens()
-                elif self.tens != None and self.force == None and self.area != None and force:
-                    self.trac_force()
-                elif self.elong == None and self.long1 != None and self.long2 != None and elong:
-                    self.trac_elong()
-            return self
+def trac_tens(self):
+    self.tens = self.force / self.area
+    return self.tens
+def trac_force(self):
+    self.force = self.tens * self.area
+    return self.force
+def trac_area(self):
+    self.area = self.tens * self.tens
+    return self.area
+def trac_elong(self):
+    self.elong = (self.long2-self.long1)/self.long1
+    return self.elong
+def hooke_tens(self):
+    self.tens = self.const*self.elong
+    return self.tens
+def hooke_const(self):
+    self.const = self.tens / self.elong
+    return self.const
+def hooke_elong(self):
+    self.elong = self.tens/self.const
+    return self.elong
 
-    
-traction_instance = Traction()
-traction_instance.trac_valores(area= 80, elong=35, const=192.3)
-traction_instance.trac_ensayo(force=  True, proportional=True)
-print(traction_instance)
+def trac_valores(self, tension = None, force = None, elong = None, area = None, long1 = None, long2 = None, const = None):
+    self.tens = tension
+    self.force = force
+    self.elong = elong
+    self.area = area
+    self.long1 = long1
+    self.long2 = long2
+    self.const = const
+def trac_ensayo(self, proportional = False, tens = False, elong = False, const = False, area = False, force = False):
+    if self.tens ==None and self.force ==None  and self.elong ==None and self.area ==None and self.long1 ==None and self.long2 ==None and self.const == None:
+        pass
+    else:
+        if proportional:
+            if self.tens == None and self.elong != None and self.const != None and tens:
+                hooke_tens()
+            if self.tens != None and self.elong == None and self.const != None and elong:
+                hooke_elong()
+            if self.tens != None and self.elong != None and self.const == None and const:
+                hooke_const()
+        else:
+            if self.tens == None and self.force != None and self.area != None and tens:
+                trac_tens()
+            elif self.tens != None and self.force != None and self.area == None and area:
+                trac_tens()
+            elif self.tens != None and self.force == None and self.area != None and force:
+                trac_force()
+            elif self.elong == None and self.long1 != None and self.long2 != None and elong:
+                trac_elong()
+        return self
+
+if __name__ == "__main__":    
+    traction_instance = Traction()
+    trac_valores(traction_instance, area= 80, elong=35, const=192.3)
+    #traction_instance.trac_ensayo(force=  True, proportional=True)
+    print(traction_instance)
 
 #Por Juan Carlos Alonso

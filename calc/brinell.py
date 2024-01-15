@@ -1,18 +1,19 @@
-import math, sys
+import math
+
+# Establece las instancias de una clase para así pdoer trabajar con todas ellas mientras están asignadas a un mismo ensayo
 
 
-#Establece las instancias de una clase para así pdoer trabajar con todas ellas mientras están asignadas a un mismo ensayo
 class Brinell():
-    def __init__(self) -> None: #Estas variables serán establecidas al momento de crear un objeto con esta clase, a todas se les asignará None ya que posteriormente se les asignarán unos valores
+    def __init__(self) -> None:  # Estas variables serán establecidas al momento de crear un objeto con esta clase, a todas se les asignará None ya que posteriormente se les asignarán unos valores
         self._diameter = None
         self._force = None
         self._indentation_diameter = None
         self._result = None
         self._hardness_constant = None
         self._fiability = None
-    
-    #Funciones que serán las encargadas de asignar los valores posteriormente a las instancias
-    @property 
+
+    # Funciones que serán las encargadas de asignar los valores posteriormente a las instancias
+    @property
     def diameter(self):
         return self._diameter
 
@@ -55,64 +56,84 @@ class Brinell():
     @property
     def fiability(self):
         return self._fiability
-    
-    @fiability.setter
-    def fiability(self, n_fiability):
-        self._fiability = n_fiability
 
     def __str__(self) -> str:
-        return str((self._result, self._diameter,self._indentation_diameter,self._force, self._hardness_constant, self._fiability))
+        return str((self._result, self._diameter, self._indentation_diameter, self._force, self._hardness_constant, self._fiability))
 
 # Calcular el resultado del ensayo mediante la fórmula principal
+
+
 def result(self):
-    self.result = round(self.force/(((math.pi*self.diameter)/2)*(self.diameter-math.sqrt(self.diameter**2-self.indentation_diameter**2))), 3)
+    self.result = round(self.force/(((math.pi*self.diameter)/2)*(self.diameter -
+                        math.sqrt(self.diameter**2-self.indentation_diameter**2))), 3)
     return self.result
 
-# Calcular el diámetro del indentadordor utilizando la fórmula principal 
+# Calcular el diámetro del indentadordor utilizando la fórmula principal
+
+
 def brinell_indentation_d(self):
-    surface = self.force / self.result #Calcular la superficie mediante la fórmula principal HB = F/S 
-    self.indentation_diameter = round(math.sqrt(self.diameter**2-((self.diameter-(2*surface)/(math.pi*self.diameter))**2)), 3 )
+    # Calcular la superficie mediante la fórmula principal HB = F/S
+    surface = self.force / self.result
+    self.indentation_diameter = round(math.sqrt(self.diameter**2-((self.diameter-(2*surface) /
+                                                                   (math.pi*self.diameter))**2)), 3)
     return self.indentation_diameter
 
 # Calcular la fuerza utilizando la constante y el diámetro del indentador F = K * D^2
+
+
 def brinell_force_1(self):
     self.force = round(self.hardness_constant * self.diameter**2, 2)
     return self.force
 
 # Calcular el diámetro dejado por el ensayo utilizando la constante y la fuerza utilizada F = K * D^2
+
+
 def brinell_diameter(self):
     self.diameter = round(math.sqrt(self.force/self.hardness_constant), 3)
     return self.diameter
 
-#Calcular la fuerza utilizando la fórmula principal del ensayo HB = F/S
+# Calcular la fuerza utilizando la fórmula principal del ensayo HB = F/S
+
+
 def brinell_force_2(self):
-    self.force = round(((math.pi*self.diameter)/2)*(self.diameter-math.sqrt(self.diameter**2-self.indentation_diameter**2))*self.result, 3)
+    self.force = round(((math.pi*self.diameter)/2)*(self.diameter -
+                       math.sqrt(self.diameter**2-self.indentation_diameter**2))*self.result, 3)
     return self.force
 
-#Comprobar si los resultados dados por el ensayo son fiables o no utilizando los diámetros D/4 < d < D/2
+# Comprobar si los resultados dados por el ensayo son fiables o no utilizando los diámetros D/4 < d < D/2
+
+
 def f_brinell_d(self):
-    self.fiability = (self.diameter/4 < self.indentation_diameter < self.diameter/2)
+    self.fiability = (self.diameter/4 <
+                      self.indentation_diameter < self.diameter/2)
     return self.fiability
 
-#Calcular la constante del ensayo
-def hardness_constant(self):
-        self.hardness_constant = round(self.force / self.diameter**2, 3)
-        return self.hardness_constant
+# Calcular la constante del ensayo
 
-#Establecer los valores para las instancias de la clase, ninguno de ellos es obligarotio
-def brinell_valores(self, force = None, diameter = None, indentation_diameter = None, result = None, hardness_constant = None):
+
+def hardness_constant(self):
+    self.hardness_constant = round(self.force / self.diameter**2, 3)
+    return self.hardness_constant
+
+# Establecer los valores para las instancias de la clase, ninguno de ellos es obligarotio
+
+
+def brinell_valores(self, force=None, diameter=None, indentation_diameter=None, result=None, hardness_constant=None):
     self.force = force
     self.diameter = diameter
     self.indentation_diameter = indentation_diameter
     self.result = result
     self.hardness_constant = hardness_constant
 
+# Extraer todos los datos faltantes del ensayo
 
-#Extraer todos los datos faltantes del ensayo
+
 def brinell_ensayo(self):
-    if sum(1 for var in [self.result, self.force, self.diameter,self.indentation_diameter, self.hardness_constant, self.fiability]if var is not None) >= 2: # Comprobar si se han rellenado más de 2 variables, en caso de que si se ejecuta el código
-        while self.result == None or self.force == None or self.diameter == None or self.indentation_diameter == None or self.hardness_constant == None or self.fiability == None: #Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
-            if self.result == None and self.force != None and self.diameter != None and self.indentation_diameter != None: 
+    # Comprobar si se han rellenado más de 2 variables, en caso de que si se ejecuta el código
+    if sum(1 for var in [self.result, self.force, self.diameter, self.indentation_diameter, self.hardness_constant, self.fiability]if var is not None) >= 2:
+        # Bucle que se ejecuta si cualquiera de las instancias de la clase son None, en caso de hacerlo se ejecuta hasta que todas tengan un valor
+        while self.result == None or self.force == None or self.diameter == None or self.indentation_diameter == None or self.hardness_constant == None or self.fiability == None:
+            if self.result == None and self.force != None and self.diameter != None and self.indentation_diameter != None:
                 result(self)
             elif self.result != None and self.force != None and self.diameter == None and self.indentation_diameter != None:
                 brinell_diameter(self)
@@ -126,14 +147,13 @@ def brinell_ensayo(self):
                 f_brinell_d(self)
             elif self.hardness_constant == None and self.diameter != None and self.force != None:
                 hardness_constant(self)
-        return self           
+        return self
     else:
-        raise ValueError
+        raise Exception("Valores insuficientes")
+
 
 if __name__ == "__main__":
     brinell_instance = Brinell()
 
 
-        
-
-#Por Juan Carlos Alonso
+# Por Juan Carlos Alonso

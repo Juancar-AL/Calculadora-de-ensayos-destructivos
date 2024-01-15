@@ -105,26 +105,29 @@ def trac_ensayo(self, proportional = False, tens = False, elong = False, const =
     else:
         if proportional:
             if self.tens == None and self.elong != None and self.const != None and tens:
-                hooke_tens()
+                hooke_tens(self)
+                return self.tens
             if self.tens != None and self.elong == None and self.const != None and elong:
-                hooke_elong()
+                hooke_elong(self)
+                return self.elong
             if self.tens != None and self.elong != None and self.const == None and const:
-                hooke_const()
+                hooke_const(self)
+                return self.const
         else:
             if self.tens == None and self.force != None and self.area != None and tens:
-                trac_tens()
+                trac_tens(self)
+                return self.tens
             elif self.tens != None and self.force != None and self.area == None and area:
-                trac_tens()
+                trac_area(self)
+                return self.area
             elif self.tens != None and self.force == None and self.area != None and force:
-                trac_force()
+                trac_force(self)
+                return self.force
             elif self.elong == None and self.long1 != None and self.long2 != None and elong:
-                trac_elong()
-        return self
+                trac_elong(self)
+                return self.elong
 
 if __name__ == "__main__":    
     traction_instance = Traction()
-    trac_valores(traction_instance, area= 80, elong=35, const=192.3)
-    #traction_instance.trac_ensayo(force=  True, proportional=True)
-    print(traction_instance)
 
 #Por Juan Carlos Alonso Luengo

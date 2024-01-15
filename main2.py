@@ -284,10 +284,13 @@ class MainApp(CTk):
         # Pasar los valores a la función v_valores
         vickers_valores(vickers_instance, force = self.force_value, result = self.result_value,
                         diameter1= self.diameter_value_1, diameter2= self.diameter_value_2)
-            
-        # Llamar a la función ensayo y obtener el resultado
-        vickers_ensayo(vickers_instance)
         
+        print(vickers_instance)
+        # Llamar a la función ensayo y obtener el resultado
+        #vickers_ensayo(vickers_instance)
+		
+        print(vickers_instance)
+		
         # Actualizar el widget result con el resultado de la función ensayo
         self.result1.configure(text=f"{vickers_instance.result} HV")
         self.result2.configure(text=f"{vickers_instance.diameter} mm")
@@ -331,88 +334,45 @@ class MainApp(CTk):
         self.result1.configure(text=f"{trac_ensayo(traction_instance, proportional = True if self.proportional_zone.get() == 'on' else False, tens = True if self.type.get() == 1 else False, const = True if self.type.get() == 5 else False, force = True if self.type.get() == 2 else False, elong = True if self.type.get() == 3 else False, area = True if self.type.get() == 4 else False)} ")
         
     def color_change(self):
+        self.entry1.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Módulo de Young")
+        self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
+        self.entry3.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Tensión generada")
+        self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
+        self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
+        self.entry6.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Área")
+        self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Deformación unitaria")
         if self.type.get() == 1 and self.proportional_zone.get() == "on":
             self.entry1.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Módulo de Young")
-            self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
-            self.entry3.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Área")
             self.entry7.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 1 and self.proportional_zone.get() == "off":
-            self.entry1.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Módulo de Young")
             self.entry2.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Fuerza utilizada")
-            self.entry3.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
             self.entry6.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 2 and self.proportional_zone.get() == "off":
-            self.entry1.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
             self.entry6.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 2 and self.proportional_zone.get() == "on":
             self.proportional_checkbox.toggle()
-            self.entry1.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
             self.entry6.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 3 and self.proportional_zone.get() == "on":
             self.entry1.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 3 and self.proportional_zone.get() == "off":
-            self.entry1.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Fuerza utilizada")
-            self.entry3.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Tensión generada")
             self.entry4.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Longitud inicial")
             self.entry5.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Deformación unitaria")
-            self.entry6.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Longitud final")
-            self.entry7.configure(fg_color = "#f0f0f0", state = "disabled", placeholder_text = "Área")
         elif self.type.get() == 4 and self.proportional_zone.get() == "off":
-            self.entry1.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Módulo de Young")  
             self.entry2.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 4 and self.proportional_zone.get() == "on":
             self.proportional_checkbox.toggle()
-            self.entry1.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Módulo de Young")  
             self.entry2.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Área")
-            self.entry7.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 5 and self.proportional_zone.get() == "on":
-            self.entry1.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Área")
             self.entry7.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Deformación unitaria")
         elif self.type.get() == 5 and self.proportional_zone.get() == "off":
             self.proportional_checkbox.toggle()
-            self.entry1.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Módulo de Young")  
-            self.entry2.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Fuerza utilizada")
             self.entry3.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Tensión generada")
-            self.entry4.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud inicial")
-            self.entry5.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Longitud final")
-            self.entry6.configure(fg_color = "#f0f0f0", state="disabled", placeholder_text = "Área")
             self.entry7.configure(fg_color = ("#A1E2C6", "#A1E2C6"), state = "normal", placeholder_text = "Deformación unitaria")
         
 

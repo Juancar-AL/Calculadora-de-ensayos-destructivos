@@ -57,6 +57,10 @@ class Brinell():
     def fiability(self):
         return self._fiability
 
+    @fiability.setter
+    def fiability(self, n_fiability):
+        self._fiability = n_fiability
+
     def __str__(self) -> str:
         return str((self._result, self._diameter, self._indentation_diameter, self._force, self._hardness_constant, self._fiability))
 

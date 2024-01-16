@@ -3,146 +3,86 @@ import math
 
 class Traction():
     def __init__(self) -> None:
-        self._elong = None
-        self._long1 = None
-        self._area = None
-        self._long2 = None
-        self._force = None
-        self._tens = None
-        self._const = None
-
-    @property
-    def elong(self):
-        return self._elong
-
-    @elong.setter
-    def elong(self, n_elong):
-        self._elong = n_elong
-
-    @property
-    def long1(self):
-        return self._long1
-
-    @long1.setter
-    def long1(self, n_long1):
-        self._long1 = n_long1
-
-    @property
-    def long2(self):
-        return self._long2
-
-    @long2.setter
-    def long2(self, n_long2):
-        self._long2 = n_long2
-
-    @property
-    def area(self):
-        return self._area
-
-    @area.setter
-    def area(self, n_area):
-        self._area = n_area
-
-    @property
-    def force(self):
-        return self._force
-
-    @force.setter
-    def force(self, n_force):
-        self._force = n_force
-
-    @property
-    def tens(self):
-        return self._tens
-
-    @tens.setter
-    def tens(self, n_tens):
-        self._tens = n_tens
-
-    @property
-    def const(self):
-        return self._const
-
-    @const.setter
-    def const(self, n_const):
-        self._const = n_const
+        self.deformacion_unitaria = None
+        self.longitud_inicial = None
+        self.area = None
+        self.longitud_final = None
+        self.fuerza = None
+        self.tension = None
+        self.modulo_young = None
 
     def __str__(self) -> str:
-        return str((self.tens, self._long1, self._long2, self._elong, self._force, self._area, self.const))
+        return str((self.tension, self.longitud_inicial, self.longitud_final, self.deformacion_unitaria, self.fuerza, self.area, self.modulo_young))
 
 
-def trac_tens(self):
-    self.tens = round(self.force / self.area, 3)
-    return self.tens
+def trac_tension(self):
+    self.tension = round(self.fuerza / self.area, 3)
+    return self.tension
 
 
-def trac_force(self):
-    self.force = round(self.tens * self.area, 3)
-    return self.force
+def trac_fuerza(self):
+    self.fuerza = round(self.tension * self.area, 3)
+    return self.fuerza
 
 
 def trac_area(self):
-    self.area = round(self.tens * self.tens, 3)
+    self.area = round(self.tension * self.tension, 3)
     return self.area
 
 
-def trac_elong(self):
-    self.elong = round((self.long2-self.long1)/self.long1, 3)
-    return self.elong
+def trac_deformacion_unitaria(self):
+    self.deformacion_unitaria = round(
+        (self.longitud_final-self.longitud_inicial)/self.longitud_inicial, 3)
+    return self.deformacion_unitaria
 
 
-def hooke_tens(self):
-    self.tens = round(self.const*self.elong, 3)
-    return self.tens
+def hooke_tension(self):
+    self.tension = round(self.modulo_young*self.deformacion_unitaria, 3)
+    return self.tension
 
 
-def hooke_const(self):
-    self.const = round(self.tens / self.elong, 3)
-    return self.const
+def hooke_modulo_young(self):
+    self.modulo_young = round(self.tension / self.deformacion_unitaria, 3)
+    return self.modulo_young
 
 
-def hooke_elong(self):
-    self.elong = round(self.tens/self.const, 3)
-    return self.elong
+def hooke_deformacion_unitaria(self):
+    self.deformacion_unitaria = round(self.tension/self.modulo_young, 3)
+    return self.deformacion_unitaria
 
 
-def trac_valores(self, tension=None, force=None, elong=None, area=None, long1=None, long2=None, const=None):
-    self.tens = tension
-    self.force = force
-    self.elong = elong
-    self.area = area
-    self.long1 = long1
-    self.long2 = long2
-    self.const = const
+def trac_valores(self, **kwargs):
+    for key, value in kwargs.items():
+        setattr(self, key, value)
 
 
-def trac_ensayo(self, proportional=False, tens=False, elong=False, const=False, area=False, force=False):
-    if self.tens == None and self.force == None and self.elong == None and self.area == None and self.long1 == None and self.long2 == None and self.const == None:
+def trac_ensayo(self, proportional=False, tension=False, deformacion_unitaria=False, modulo_young=False, area=False, fuerza=False):
+    if self.tension == None and self.fuerza == None and self.deformacion_unitaria == None and self.area == None and self.longitud_inicial == None and self.longitud_final == None and self.modulo_young == None:
         pass
     else:
         if proportional:
-            if self.tens == None and self.elong != None and self.const != None and tens:
-                hooke_tens(self)
-                return self.tens
-            if self.tens != None and self.elong == None and self.const != None and elong:
-                hooke_elong(self)
-                return self.elong
-            if self.tens != None and self.elong != None and self.const == None and const:
-                hooke_const(self)
-                return self.const
+            if self.tension == None and self.deformacion_unitaria != None and self.modulo_young != None and tension:
+                hooke_tension(self)
+                return self.tension
+            if self.tension != None and self.deformacion_unitaria == None and self.modulo_young != None and deformacion_unitaria:
+                hooke_deformacion_unitaria(self)
+                return self.deformacion_unitaria
+            if self.tension != None and self.deformacion_unitaria != None and self.modulo_young == None and modulo_young:
+                hooke_modulo_young(self)
+                return self.modulo_young
         else:
-            if self.tens == None and self.force != None and self.area != None and tens:
-                trac_tens(self)
-                return self.tens
-            elif self.tens != None and self.force != None and self.area == None and area:
+            if self.tension == None and self.fuerza != None and self.area != None and tension:
+                trac_tension(self)
+                return self.tension
+            elif self.tension != None and self.fuerza != None and self.area == None and area:
                 trac_area(self)
                 return self.area
-            elif self.tens != None and self.force == None and self.area != None and force:
-                trac_force(self)
-                return self.force
-            elif self.elong == None and self.long1 != None and self.long2 != None and elong:
-                trac_elong(self)
-                return self.elong
+            elif self.tension != None and self.fuerza == None and self.area != None and fuerza:
+                trac_fuerza(self)
+                return self.fuerza
+            elif self.deformacion_unitaria == None and self.longitud_inicial != None and self.longitud_final != None and deformacion_unitaria:
+                trac_deformacion_unitaria(self)
+                return self.deformacion_unitaria
 
 
 if __name__ == "__main__":

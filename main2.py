@@ -80,6 +80,20 @@ class MainApp(CTk):
             "#D7D7D7", "#555555"))
         self.entrada_datos_7 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
             "#D7D7D7", "#555555"))
+        self.entrada_datos_8 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_9 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_10 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_11 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_12 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_13 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
+        self.entrada_datos_14 = CTkEntry(self, corner_radius=100, width=160, fg_color=(
+            "#D7D7D7", "#555555"))
 
         # Etiquetas con texto que solamente muestran ese texto
         self.datos = CTkLabel(self, text="Datos", width=160, fg_color=(

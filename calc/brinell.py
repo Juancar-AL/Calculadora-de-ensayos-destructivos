@@ -102,7 +102,7 @@ def brinell_ensayo(self):
                 hardness_constant(self)
         return self
     else:
-        raise Exception("Valores insuficientes para el cálculo")
+        raise Exception("Valores insuficientes")
 
 
 if __name__ == "__main__":

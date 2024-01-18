@@ -1,4 +1,5 @@
 import math
+import numpy
 
 # Establece la clase que se va a inicializar
 
@@ -91,7 +92,7 @@ def charpy_ensayo(self):
                 c_resultado(self)
             elif self.var_altura == None and self.longitud != None and self.angulo_beta != None and self.angulo_beta != None:
                 c_variacion_altura(self)
-            elif self.altura_inicial == None and self.lonitud != None and self.angulo_alpha != None:
+            elif self.altura_inicial == None and self.longitud != None and self.angulo_alpha != None:
                 c_altura_inicial(self)
             elif self.altura_final == None and self.longitud != None and self.angulo_beta != None:
                 c_altura_final(self)
@@ -109,6 +110,4 @@ def charpy_ensayo(self):
 charpy_instance = Charpy()
 charpy_valores(charpy_instance, altura_final=0.34,
                lado=0.000010, entalla=0.000002, masa=30, altura_inicial=1)
-print(charpy_instance)
 charpy_ensayo(charpy_instance)
-print(charpy_instance)

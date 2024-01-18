@@ -26,7 +26,7 @@ class MainApp(CTk):
         self.grid_columnconfigure((0, 2), weight=2)
         self.grid_rowconfigure(1, weight=2)
         self.grid_rowconfigure((2, 3), weight=3)
-        self.iconbitmap("others/icon.ico")
+        self.iconbitmap("others/icono.ico")
         self.resizable(False, False)
 
         # Se establecen las características de los componentes de la pantalla principal en la que se puede seleccionar que a que ensayo se quiere acceder

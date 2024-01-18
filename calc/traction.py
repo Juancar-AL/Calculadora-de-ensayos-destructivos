@@ -88,4 +88,4 @@ def trac_ensayo(self, proportional=False, tension=False, deformacion_unitaria=Fa
 if __name__ == "__main__":
     traction_instance = Traction()
 
-# Por Juan Carlos Alonso Luengo
+#Por Juan Carlos Alonso Luengo

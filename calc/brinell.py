@@ -31,8 +31,8 @@ def resultado(self):
 def brinell_huella_d(self):
     # Calcular la superficie mediante la fórmula principal HB = F/S
     try:
-        surface = self.fuerza / self.resultado
-        self.huella_diametro = round(math.sqrt(self.diametro**2-((self.diametro-(2*surface) /
+        area = self.fuerza / self.resultado
+        self.huella_diametro = round(math.sqrt(self.diametro**2-((self.diametro-(2*area) /
                                                                   (math.pi*self.diametro))**2)), 3)
         return self.huella_diametro
     except:

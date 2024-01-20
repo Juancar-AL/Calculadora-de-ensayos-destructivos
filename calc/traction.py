@@ -26,7 +26,7 @@ def trac_fuerza(self):
 
 
 def trac_area(self):
-    self.area = round(self.tension * self.tension, 3)
+    self.area = round(self.tension / self.resultado, 3)
     return self.area
 
 

@@ -87,5 +87,9 @@ def trac_ensayo(self, proportional=False, tension=False, deformacion_unitaria=Fa
 
 if __name__ == "__main__":
     traction_instance = Traction()
+    print("Por Juan Carlos Alonso")
+    trac_valores(traction_instance, fuerza=8500, area=19.635)
+    trac_ensayo(traction_instance, tension=True)
+    print(traction_instance)
 
-#Por Juan Carlos Alonso Luengo
+# Por Juan Carlos Alonso

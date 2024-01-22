@@ -66,10 +66,6 @@ class MainApp(CTk):
             "#D7D7D7", "#555555"), corner_radius=100)
         self.resultado8 = CTkLabel(self, width=200, fg_color=(
             "#D7D7D7", "#555555"), corner_radius=100)
-        self.resultado9 = CTkLabel(self, width=200, fg_color=(
-            "#D7D7D7", "#555555"), corner_radius=100)
-        self.resultado10 = CTkLabel(self, width=200, fg_color=(
-            "#D7D7D7", "#555555"), corner_radius=100)
 
         # Botones con diversas funciones. 1 - Calcula el ensayo 2- Cambia la apariencia 3 - Vuelve a la pantalla inicial
         self.boton = CTkButton(self, text="Calcular ensayo", corner_radius=100, fg_color=("#7CC0A2", "#45B584"), text_color="#000000",
@@ -182,6 +178,8 @@ class MainApp(CTk):
         global ensayo
         ensayo = True
 
+        self.base_color()
+
         self.ocultar_principal()
 
         # Configuraciones de los elementos de la pantalla del ensayo Brinell
@@ -239,6 +237,8 @@ class MainApp(CTk):
         global ensayo
         ensayo = True
 
+        self.base_color()
+
         self.ocultar_principal()
 
         # Configuraciones de los elementos de la pantalla del ensayo Brinell
@@ -286,6 +286,8 @@ class MainApp(CTk):
         # Establece la variable ensayo como verdadera que es la que indica la existencia de un ensayo en pantalla
         global ensayo
         ensayo = True
+
+        self.base_color()
 
         self.ocultar_principal()
 
@@ -359,6 +361,8 @@ class MainApp(CTk):
         global ensayo
         ensayo = True
 
+        self.base_color()
+
         self.ocultar_principal()
 
         # Configuraciones de los elementos de la pantalla del ensayo Brinell
@@ -402,11 +406,9 @@ class MainApp(CTk):
         self.resultado4.configure(text="Energía 2", width=100)
         self.resultado5.configure(
             text="Variación Energía", width=100)
-        self.resultado6.configure(text="Lado", width=100)
-        self.resultado7.configure(text="Entalla", width=100)
-        self.resultado8.configure(text="Área", width=100)
-        self.resultado9.configure(text="Masa", width=100)
-        self.resultado10.configure(text="Resultado", width=100)
+        self.resultado6.configure(text="Área", width=100)
+        self.resultado7.configure(text="Masa", width=100)
+        self.resultado8.configure(text="Resultado", width=100)
 
         # Después de realizar los cambios muestra los elementos en pantalla
         self.altura.grid(row=1, column=0,
@@ -453,10 +455,8 @@ class MainApp(CTk):
                              sticky="ew", pady=10, padx=20)
         self.resultado6.grid(row=5, column=5, pady=10, padx=20)
         self.resultado7.grid(row=5, column=6, pady=10, padx=20)
-        self.resultado8.grid(row=6, column=5, pady=10, padx=20)
-        self.resultado9.grid(row=6, column=6, pady=10, padx=20)
-        self.resultado10.grid(row=1, column=5, columnspan=2,
-                              sticky="ew", pady=10, padx=20)
+        self.resultado8.grid(row=1, column=5, columnspan=2,
+                             sticky="ew", pady=10, padx=20)
 
     # Hace que los elementos que aparezcan en pantalla sean eliminados de esta y se borren los datos de las entradas de texto
     def ocultar_ensayo(self):
@@ -466,7 +466,7 @@ class MainApp(CTk):
                          self.entrada_datos_9, self.entrada_datos_10, self.entrada_datos_11, self.entrada_datos_12,
                          self.entrada_datos_13, self.boton, self.tema_e, self.volver, self.resultado1, self.resultado2,
                          self.resultado3, self.resultado4, self.resultado5, self.resultado6, self.resultado7, self.resultado8,
-                         self.resultado9, self.resultado10, self.resultados, self.datos, self.error, self.casilla_area,
+                         self.resultados, self.datos, self.error, self.casilla_area,
                          self.casilla_deformacion_unitaria, self.casilla_fuerza, self.casilla_modulo_young, self.casilla_proporcional,
                          self.casilla_tension, self.lados, self.energia, self.altura, self.angulos]
 
@@ -615,23 +615,25 @@ class MainApp(CTk):
             text=f"{charpy_instance.energia_potencial2} J ")
         self.resultado5.configure(
             text=f"{charpy_instance.var_energia_potencial} J ")
-        self.resultado6.configure(text=f"{charpy_instance.lado} mm")
-        self.resultado7.configure(text=f"{charpy_instance.entalla} mm")
-        self.resultado8.configure(
+        self.resultado6.configure(
             text=f"{charpy_instance.area} mm^2 ")
-        self.resultado9.configure(
+        self.resultado7.configure(
             text=f"{charpy_instance.masa} kg ")
-        self.resultado10.configure(
+        self.resultado8.configure(
             text=f"{charpy_instance.resultado} J/mm^2 ")
 
-    # En el ensayo de tracción cambiar el color de los inputs que se deben rellenar para obtener ese dato
-    def color_change(self):
+    def base_color(self):
         # Mediante un bucle restaura el color de los inputs
         entry_list = [self.entrada_datos_1, self.entrada_datos_2, self.entrada_datos_3,
                       self.entrada_datos_4, self.entrada_datos_5, self.entrada_datos_6, self.entrada_datos_7]
         for i in entry_list:
             i.configure(fg_color=(
                 "#D7D7D7", "#555555"))
+
+    # En el ensayo de tracción cambiar el color de los inputs que se deben rellenar para obtener ese dato
+    def color_change(self):
+        # Mediante un bucle restaura el color de los inputs
+        self.base_color()
 
         # Revisa que dato se está tratando de recibir y cambia el color a los inputs necesarios para indicárselo al usuario
         if self.type.get() == 1 and self.zona_proporcional.get() == "on":
@@ -692,16 +694,15 @@ def cambiar_apariencia():
 def valores(self, **kwargs):
     if ensayo:
         for key, value in kwargs.items():
-            if value is not None:
-                if key == 'diametro2' and kwargs['diametro2'] is not None:
-                    # Si se dan dos valores para el diámetro, se calcula la media
-                    self.diametro = (
-                        (kwargs['diametro1']) + kwargs['diametro2']) / 2
-                elif key == 'diametro1':
-                    # Si solo se da un valor para el diámetro, se asigna directamente
-                    self.diametro = kwargs['diametro1']
-                else:
-                    setattr(self, key, value)
+            if key == 'diametro2' and kwargs['diametro2'] is not None:
+                # Si se dan dos valores para el diámetro, se calcula la media
+                self.diametro = (
+                    (kwargs['diametro1']) + kwargs['diametro2']) / 2
+            elif key == 'diametro1':
+                # Si solo se da un valor para el diámetro, se asigna directamente
+                self.diametro = kwargs['diametro1']
+            else:
+                setattr(self, key, value)
 
 
 app = MainApp()

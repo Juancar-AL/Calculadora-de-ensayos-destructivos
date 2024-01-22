@@ -33,12 +33,8 @@ Lado {self.lado}\nEntalla {self.entalla}\nArea {self.area}\nMasa {self.masa}\n "
 
 def c_altura_inicial(self):
     try:
-        if self.longitud != None and self.angulo_alpha != None:
-            self.altura_inicial = round(
-                self.longitud - (math.cos(self.angulo_alpha) * self.longitud), 3)
-            return self.altura_inicial
-        self.altura_inicial = round(self.altura_final -
-                                    ((self.resultado*self.area)/(self.masa * 9.81)), 3)
+        self.altura_inicial = round(
+            self.longitud - (math.cos(180-self.angulo_alpha-90) * self.longitud), 3)
         return self.altura_inicial
     except TypeError:
         pass
@@ -79,7 +75,7 @@ def c_var_entergia_potencial(self):
     except TypeError:
         try:
             self.var_energia_potencial = round(
-                self.masa * 9.81 * (self.altura_inicial-self.altura_final), 3)
+                self.masa * 9.81 * (self.altura_final-self.altura_inicial), 3)
         except TypeError:
             pass
     finally:
@@ -114,13 +110,20 @@ def charpy_valores(self, **kwargs):
 
 def charpy_ensayo(self):
     for i in range(100):
-        c_altura_inicial(self)
-        c_altura_final(self)
-        c_energia_potencial_1(self)
-        c_energia_potencial_2(self)
-        c_var_entergia_potencial(self)
-        c_area(self)
-        c_resultado(self)
+        if self.altura_inicial == None:
+            c_altura_inicial(self)
+        if self.altura_final == None:
+            c_altura_final(self)
+        if self.energia_potencial1 == None:
+            c_energia_potencial_1(self)
+        if self.energia_potencial2 == None:
+            c_energia_potencial_2(self)
+        if self.var_energia_potencial == None:
+            c_var_entergia_potencial(self)
+        if self.area == None:
+            c_area(self)
+        if self.resultado == None:
+            c_resultado(self)
 
 
 if __name__ == "__main__":
